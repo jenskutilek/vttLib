@@ -332,7 +332,11 @@ def transform(tokens, components=None):
                 for i in reversed(t.stack_items):
                     stream[push_indexes[-1]].appendleft(i)
             else:
-                assert not t.stack_items or mnemonic.startswith(("PUSH", "NPUSH"))
+                try:
+                    assert not t.stack_items or mnemonic.startswith(("PUSH", "NPUSH"))
+                except AssertionError:
+                    print(t.stack, mnemonic)
+                    raise
 
                 # While it is true that most instructions cannot take stack
                 # parameters in #PUSHOFF mode, you can have PUSHx[] and NPUSHx[]
@@ -472,7 +476,11 @@ def make_program(vtt_assembly, name=None, components=None):
 
 def make_glyph_program(vtt_assembly, name=None):
     components = []
-    program = make_program(vtt_assembly, name, components)
+    try:
+        program = make_program(vtt_assembly, name, components)
+    except:
+        print(f"Error in Glyph: {name}")
+        raise
     return program, components
 
 
