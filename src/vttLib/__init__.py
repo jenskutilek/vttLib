@@ -478,7 +478,7 @@ def make_glyph_program(vtt_assembly, name=None):
     components = []
     try:
         program = make_program(vtt_assembly, name, components)
-    except:
+    except:  # noqa: E722
         print(f"Error in Glyph: {name}")
         raise
     return program, components
