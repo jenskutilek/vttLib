@@ -170,7 +170,7 @@ def merge_functions(functions, include=None):
 
 
 def tokenize(data, parseAll=True):
-    return AssemblyParser.parseString(data, parseAll=parseAll)
+    return AssemblyParser.parse_string(data, parse_all=parseAll)
 
 
 def transform(tokens, components=None):
@@ -478,7 +478,7 @@ def make_glyph_program(vtt_assembly, name=None):
     components = []
     try:
         program = make_program(vtt_assembly, name, components)
-    except:
+    except:  # noqa: E722
         print(f"Error in Glyph: {name}")
         raise
     return program, components

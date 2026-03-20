@@ -86,9 +86,10 @@ def merge_from_file(
     if "head" in ttx_dump:
         for bit_no in (3, 4, 13):
             if ttx_dump["head"].flags & 2**bit_no:
-                font["head"].flags |= (1<<bit_no)
+                font["head"].flags |= 1 << bit_no
             else:
-                font["head"].flags &=~ (1<<bit_no)
+                font["head"].flags &= ~(1 << bit_no)
+
 
 def copy_from_ufo_data_to_file(ufo: ufoLib2.Font, path: os.PathLike) -> None:
     """Dump VTT data stored in a UFO's data/ structure into a file.
