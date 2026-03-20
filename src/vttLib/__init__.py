@@ -170,7 +170,7 @@ def merge_functions(functions, include=None):
 
 
 def tokenize(data, parseAll=True):
-    return AssemblyParser.parseString(data, parseAll=parseAll)
+    return AssemblyParser.parse_string(data, parse_all=parseAll)
 
 
 def transform(tokens, components=None):
